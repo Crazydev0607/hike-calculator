@@ -1,1 +1,151 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://teammaj.sgstechie.com/app/Content/image/favicon.ico" type="image/x-icon">
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+    <title>Hike Calculation</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 135px;
+            height: 80vh;
+            height: 80vh;
+            background: url('https://static.vecteezy.com/system/resources/previews/036/226/616/non_2x/ai-generated-nature-landscapes-background-free-photo.jpg') no-repeat center center/cover;
+        }
+
+        @keyframes blink {
+            0% { color: red; }
+            33% { color: green; }
+            66% { color: black; }
+            100% { color: red; }
+        }
+        
+        #title {
+            animation: blink 1.5s infinite;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin: 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+        }
+
+        input,
+        button {
+            width: 95%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        h2 {
+            color: black;
+            font-size: xx-large;
+            font-weight: 600;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 99%;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="title">Hike Calculation</h2>
+    <div class="row">
+        <div class="container">
+            <h3>Percentage Salary Calculation - (2,00,000 - 30%)</h3>
+            <input type="number" id="currentSalary" placeholder="Current Salary">
+            <input type="number" id="percentageIncrease" placeholder="Increase Percentage %">
+            <button onclick="calculateNewSalary()">Calculate</button>
+            <p class="result" id="newSalaryResult"></p>
+            <p class="result" id="monthlySalaryResult"></p>
+        </div>
+        
+        <div class="container">
+            <h3>Increment Salary Percentage Calculation- (2,00,000 - 4,00,000)</h3>
+            <input type="number" id="currentSalary2" placeholder="Current Salary">
+            <input type="number" id="expectedSalary" placeholder="Expected Salary">
+            <button onclick="calculatePercentageIncrease()">Calculate</button>
+            <p class="result" id="percentageIncreaseResult"></p>
+            <p class="result" id="monthlySalaryResult2"></p>
+        </div>
+    </div>
+    
+    <script>
+        function calculateNewSalary() {
+            let currentSalary = parseFloat(document.getElementById("currentSalary").value);
+            let percentageIncrease = parseFloat(document.getElementById("percentageIncrease").value);
+            
+            if (!isNaN(currentSalary) && !isNaN(percentageIncrease)) {
+                let increaseAmount = currentSalary * (percentageIncrease / 100);
+                let newSalary = currentSalary + increaseAmount;
+                let monthlySalary = newSalary / 12;
+                document.getElementById("newSalaryResult").innerText = "New Salary: " + newSalary.toFixed(2);
+                document.getElementById("monthlySalaryResult").innerText = "Monthly Salary: " + monthlySalary.toFixed(2);
+            } else {
+                document.getElementById("newSalaryResult").innerText = "Please enter valid numbers";
+                document.getElementById("monthlySalaryResult").innerText = "";
+            }
+        }
+        
+        function calculatePercentageIncrease() {
+            let currentSalary = parseFloat(document.getElementById("currentSalary2").value);
+            let expectedSalary = parseFloat(document.getElementById("expectedSalary").value);
+            
+            if (!isNaN(currentSalary) && !isNaN(expectedSalary) && currentSalary > 0) {
+                let percentageIncrease = ((expectedSalary - currentSalary) / currentSalary) * 100;
+                let monthlySalary = expectedSalary / 12;
+                document.getElementById("percentageIncreaseResult").innerText = "Percentage Increase: " + percentageIncrease.toFixed(2) + "%";
+                document.getElementById("monthlySalaryResult2").innerText = "Monthly Salary: " + monthlySalary.toFixed(2);
+            } else {
+                document.getElementById("percentageIncreaseResult").innerText = "Please enter valid numbers";
+                document.getElementById("monthlySalaryResult2").innerText = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
